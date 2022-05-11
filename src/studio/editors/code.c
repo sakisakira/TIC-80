@@ -1626,35 +1626,35 @@ static void processKeyboard(Code* code)
                 goNextBookmark(code, code->src);
         }
     }
-    else usedKeybinding = false;
-
-
-    if(ctrl || alt)
+    else if(ctrl)
     {
-        if(ctrl)
-        {
-            if(keyWasPressed(code->studio, tic_key_tab))        doTab(code, shift, ctrl);
-            else if(keyWasPressed(code->studio, tic_key_a))     selectAll(code);
-            else if(keyWasPressed(code->studio, tic_key_z))     undo(code);
-            else if(keyWasPressed(code->studio, tic_key_y))     redo(code);
-            else if(keyWasPressed(code->studio, tic_key_f))     setCodeMode(code, TEXT_FIND_MODE);
-            else if(keyWasPressed(code->studio, tic_key_g))     setCodeMode(code, TEXT_GOTO_MODE);
-            else if(keyWasPressed(code->studio, tic_key_b))     setCodeMode(code, TEXT_BOOKMARK_MODE);
-            else if(keyWasPressed(code->studio, tic_key_o))     setCodeMode(code, TEXT_OUTLINE_MODE);
-            else if(keyWasPressed(code->studio, tic_key_n))     downLine(code);
-            else if(keyWasPressed(code->studio, tic_key_p))     upLine(code);
-            else if(keyWasPressed(code->studio, tic_key_e))     endLine(code);
-            else if(keyWasPressed(code->studio, tic_key_d))     dupLine(code);
-            else if(keyWasPressed(code->studio, tic_key_slash)) commentLine(code);
-            else if(keyWasPressed(code->studio, tic_key_home))  goCodeHome(code);
-            else if(keyWasPressed(code->studio, tic_key_end))   goCodeEnd(code);
-            else usedKeybinding = false;
-        }
-
-        if(keyWasPressed(code->studio, tic_key_left))           leftWord(code);
-        else if(keyWasPressed(code->studio, tic_key_right))     rightWord(code);
-        else if(keyWasPressed(code->studio, tic_key_delete))    deleteWord(code);
+        if(keyWasPressed(code->studio, tic_key_tab))        doTab(code, shift, ctrl);
+        else if(keyWasPressed(code->studio, tic_key_z))     undo(code);
+        else if(keyWasPressed(code->studio, tic_key_y))     redo(code);
+        else if(keyWasPressed(code->studio, tic_key_f))     rightColumn(code);
+        else if(keyWasPressed(code->studio, tic_key_g))     setCodeMode(code, TEXT_GOTO_MODE);
+        else if(keyWasPressed(code->studio, tic_key_b))     leftColumn(code);
+        else if(keyWasPressed(code->studio, tic_key_o))     setCodeMode(code, TEXT_OUTLINE_MODE);
+        else if(keyWasPressed(code->studio, tic_key_n))     downLine(code);
+        else if(keyWasPressed(code->studio, tic_key_p))     upLine(code);
+        else if(keyWasPressed(code->studio, tic_key_d))     deleteChar(code);
+        else if(keyWasPressed(code->studio, tic_key_h))     backspaceChar(code);
+        else if(keyWasPressed(code->studio, tic_key_a))     goHome(code);
+        else if(keyWasPressed(code->studio, tic_key_e))     goEnd(code);
+        else if(keyWasPressed(code->studio, tic_key_slash)) commentLine(code);
+        else if(keyWasPressed(code->studio, tic_key_home))  goCodeHome(code);
+        else if(keyWasPressed(code->studio, tic_key_end))   goCodeEnd(code);
+        else usedKeybinding = false;
+    } else if (alt)
+    {
+        if(keyWasPressed(code->studio, tic_key_left))       leftWord(code);
+        else if(keyWasPressed(code->studio, tic_key_right)) rightWord(code);
+        else if(keyWasPressed(code->studio, tic_key_delete)) deleteWord(code);
         else if(keyWasPressed(code->studio, tic_key_backspace)) backspaceWord(code);
+        else if(keyWasPressed(code->studio, tic_key_f))     setCodeMode(code, TEXT_FIND_MODE);
+        else if(keyWasPressed(code->studio, tic_key_b))     setCodeMode(code, TEXT_BOOKMARK_MODE);
+        else if(keyWasPressed(code->studio, tic_key_d))     dupLine(code);
+        else if(keyWasPressed(code->studio, tic_key_a))     selectAll(code);
         else usedKeybinding = false;
     }
     else
